@@ -2,8 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-primary: #0e1012;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-color: #343a40;
+}
+
+html.light {
+  --bg-primary: #faf9f6;
+  --bg-secondary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Override Tailwind classes for theme support */
+.bg-\[\#0e1012\],
+.bg-\[\#1a1a1a\] {
+  background-color: var(--bg-secondary);
+}
+
+.text-white,
+.text-gray-400,
+.text-gray-300,
+.text-gray-500,
+.text-gray-600 {
+  color: var(--text-secondary);
+}
+
+.text-black {
+  color: var(--text-primary);
+}
+
+.border-\[\#343a40\],
+.border-\[\#e5e7eb\] {
+  border-color: var(--border-color);
+}
+
+html.light .bg-\[\#0e1012\] {
+  background-color: var(--bg-primary);
+}
+
+html.light .text-gray-400,
+html.light .text-gray-300 {
+  color: var(--text-secondary);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 52px;
+  height: 28px;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: #6db33f;
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #6db33f;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+html.light .theme-toggle::after {
+  transform: translateX(24px);
 }
 
 @keyframes fadeInUp {
@@ -44,4 +132,14 @@ html {
   0% { transform: scaleX(0); }
   50% { transform: scaleX(0.5); }
   100% { transform: scaleX(1); }
+}
+
+/* Light mode specific overrides */
+html.light .bg-\[\#1a1a1a\] {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+html.light nav {
+  background-color: rgba(250, 249, 246, 0.9) !important;
 }

@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import MainContent from './components/MainContent';
 import ProjectDetail from './components/ProjectDetail';
 import ScrollToTop from './components/ScrollToTop';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Componente envoltorio para manejar la carga en cada cambio de ruta
 const PageWrapper = ({ children }) => {
@@ -51,17 +52,19 @@ const PageWrapper = ({ children }) => {
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <PageWrapper>
-        <div className="bg-[#0e1012] min-h-screen">
-          <Routes>
-            <Route path="/" element={<><HeroSection /><MainContent /></>} />
-            <Route path="/proyecto/:id" element={<ProjectDetail />} />
-          </Routes>
-        </div>
-      </PageWrapper>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <PageWrapper>
+          <div className="min-h-screen bg-primary text-primary transition-colors duration-300">
+            <Routes>
+              <Route path="/" element={<><HeroSection /><MainContent /></>} />
+              <Route path="/proyecto/:id" element={<ProjectDetail />} />
+            </Routes>
+          </div>
+        </PageWrapper>
+      </Router>
+    </ThemeProvider>
   );
 }
 

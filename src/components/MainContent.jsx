@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ id, title, description, tech, icon, github, demo }) => (
+const ProjectCard = ({ id, title, description, tech, icon, github, demo, image }) => (
   <div className="flex flex-col md:flex-row bg-[#1a1a1a] rounded-3xl overflow-hidden border border-[#343a40] hover:border-[#6db33f]/50 transition-all duration-500 group">
     <div className="md:w-64 bg-[#0e1012] flex items-center justify-center flex-shrink-0">
-      <div className="text-[#6db33f] opacity-30 group-hover:opacity-60 transition-opacity duration-500 h-full w-full flex items-center justify-center py-8">
-        <Icon icon={icon} className="text-8xl" />
+      <div className="text-[#6db33f] opacity-30 group-hover:opacity-60 transition-opacity duration-500 h-full w-full flex items-center justify-center py-8 p-2">
+        {image ? (
+          <img src={image} alt={title} className="w-full h-full object-cover rounded-xl border-2 border-[#6db33f]" />
+        ) : (
+          <Icon icon={icon} className="text-8xl" />
+        )}
       </div>
     </div>
     <div className="p-8 flex flex-col justify-between flex-grow">
@@ -19,16 +23,18 @@ const ProjectCard = ({ id, title, description, tech, icon, github, demo }) => (
       </div>
       <div className="flex gap-3">
         <Link to={`/proyecto/${id}`} className="flex items-center gap-2 bg-[#6db33f] text-black px-6 py-2.5 rounded-full text-base font-semibold hover:bg-white transition">
-          Ver más
+          Explicación del proyecto
         </Link>
         {github && (
-          <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full border border-[#343a40] text-gray-400 hover:border-white hover:text-white transition">
+          <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-black text-white px-6 py-2.5 rounded-full text-base font-semibold hover:bg-white hover:text-black transition border border-[#343a40]">
             <Icon icon="ri:github-fill" className="text-xl" />
+            Código
           </a>
         )}
         {demo && (
-          <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full border border-[#343a40] text-gray-400 hover:border-[#6db33f] hover:text-[#6db33f] transition">
+          <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#FF0000] text-white px-6 py-2.5 rounded-full text-base font-semibold hover:bg-[#CC0000] transition">
             <Icon icon="ri:external-link-fill" className="text-xl" />
+            Ver demo
           </a>
         )}
       </div>
@@ -151,8 +157,8 @@ const ContactForm = () => {
 
 const MainContent = () => {
   const proyectos = [
-    { id: "ecommerce", title: "E-commerce Full Stack", description: "Plataforma completa con Spring Boot y React.", tech: ["logos:java", "logos:spring-icon", "logos:javascript", "logos:react", "logos:mysql-icon", "logos:tailwindcss-icon"], icon: "ri:shopping-bag-3-line", github: "https://github.com/tu-usuario/ecommerce", demo: "https://ecommerce-demo.com" },
-    { id: "medical-api", title: "Lion Bank - WebApp Bancaria", description: "Backend robusto desarrollado en C# y .NET.", tech: ["logos:java", "logos:spring-icon", "logos:javascript", "logos:react", "logos:mysql-icon", "logos:tailwindcss-icon"], icon: "ri:bank-line", github: "https://github.com/tu-usuario/medical-api", demo: "https://medical-demo.com" },
+    { id: "ecommerce", title: "Sport Store E-commerce Full Stack", description: "Tienda en línea donde puedes registrarte, ver productos, agregar al carrito, comprar y pagar con tarjeta.", tech: ["logos:java", "logos:spring-icon", "logos:javascript", "logos:react", "logos:mysql-icon", "logos:tailwindcss-icon"], icon: "ri:shopping-bag-3-line", image: "https://res.cloudinary.com/do4mocbxa/image/upload/v1773115739/Presentacion_ceavfz.png", github: "https://github.com/tu-usuario/ecommerce", demo: "https://ecommerce-demo.com" },
+    { id: "medical-api", title: "Lion Bank ATM Full Stack", description: "Cajero Automático desarrollado con Springboot y React", tech: ["logos:java", "logos:spring-icon", "logos:javascript", "logos:react", "logos:mysql-icon", "logos:tailwindcss-icon"], icon: "ri:bank-line", image: "https://res.cloudinary.com/do4mocbxa/image/upload/v1773199266/ImagenInicio_bfgnwv.png", github: "https://github.com/tu-usuario/medical-api", demo: "https://medical-demo.com" },
     { id: "tickets", title: "Ticket System", description: "Gestión de incidencias con dashboard en tiempo real.", tech: ["logos:dotnet", "logos:tailwindcss-icon", "logos:react"], icon: "ri:ticket-line", github: "https://github.com/tu-usuario/tickets", demo: "https://tickets-demo.com" }
   ];
 
@@ -223,6 +229,14 @@ const MainContent = () => {
               <Icon icon="logos:postman" />
               <span className="text-sm text-gray-500 mt-2">Postman</span>
             </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="logos:axios" />
+              <span className="text-sm text-gray-500 mt-2">Axios</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="devicon:swagger" />
+              <span className="text-sm text-gray-500 mt-2">Swagger</span>
+            </div>
           </div>
           <div className="flex flex-wrap justify-center gap-16 text-8xl opacity-50 hover:opacity-100 transition-all animate-fade-in-up delay-300">
             <div className="flex flex-col items-center">
@@ -236,6 +250,28 @@ const MainContent = () => {
             <div className="flex flex-col items-center">
               <Icon icon="logos:vercel" className="text-6xl grayscale hover:grayscale-0" />
               <span className="text-sm text-gray-500 mt-2">Vercel</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 border-t border-[#343a40]">
+          <h2 className="text-center text-gray-500 uppercase tracking-[0.4em] text-xs mb-16 font-bold animate-fade-in">Editores de Código</h2>
+          <div className="flex flex-wrap justify-center gap-16 text-8xl grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
+            <div className="flex flex-col items-center">
+              <Icon icon="logos:intellij-idea" />
+              <span className="text-sm text-gray-500 mt-2">IntelliJ IDEA</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="vscode-icons:file-type-vscode" />
+              <span className="text-sm text-gray-500 mt-2">VS Code</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="logos:eclipse" />
+              <span className="text-sm text-gray-500 mt-2">Eclipse</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="logos:netbeans" />
+              <span className="text-sm text-gray-500 mt-2">NetBeans</span>
             </div>
           </div>
         </section>

@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const HeroSection = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="bg-[#0e1012] text-white">
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-[#343a40] bg-[#0e1012]/80">
+    <header className="text-white">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-[#343a40] bg-[#0e1012]/90">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="text-[#6db33f] font-bold text-xl tracking-tighter flex items-center gap-2">
             <Icon icon="solar:code-bold" className="text-2xl" /> Alan Quiroz
           </Link>
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+          
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
             <a href="#" className="hover:text-[#6db33f] transition py-1.5">Presentación</a>
             <a href="#proyectos" className="hover:text-[#6db33f] transition py-1.5">Proyectos</a>
             <a href="#contacto" className="hover:text-[#6db33f] transition py-1.5">Contacto</a>
+            <ThemeToggle />
           </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-gray-400 hover:text-[#6db33f] transition"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <Icon icon={menuOpen ? "ri:close-line" : "ri:menu-line"} className="text-2xl" />
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-[#0e1012] border-t border-[#343a40] pb-4">
+            <div className="flex flex-col space-y-4 px-6 pt-2">
+              <a href="#" className="text-gray-400 hover:text-[#6db33f] transition py-2" onClick={() => setMenuOpen(false)}>Presentación</a>
+              <a href="#proyectos" className="text-gray-400 hover:text-[#6db33f] transition py-2" onClick={() => setMenuOpen(false)}>Proyectos</a>
+              <a href="#contacto" className="text-gray-400 hover:text-[#6db33f] transition py-2" onClick={() => setMenuOpen(false)}>Contacto</a>
+              <div className="pt-2">
+                <ThemeToggle />
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       <div className="max-w-6xl mx-auto px-6">
@@ -32,10 +60,10 @@ const HeroSection = () => {
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <a href="https://github.com/devalan000-sudo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#24292e] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#2f363d] transition">
-                <Icon icon="ri:github-fill" className="text-xl" /> GitHub
+                <Icon icon="ri:github-fill" className="text-xl text-white" /> GitHub
               </a>
               <a href="https://www.linkedin.com/in/alan-quiroz-rivera" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#0077b5] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0096db] transition">
-                <Icon icon="ri:linkedin-fill" className="text-xl" /> LinkedIn
+                <Icon icon="ri:linkedin-fill" className="text-xl text-white" /> LinkedIn
               </a>
               <a href="/Quiroz_Alan_CV_Hardvard.pdf" download className="flex items-center gap-2 bg-[#6db33f] text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition">
                 <Icon icon="ri:download-cloud-fill" className="text-xl" /> Descargar CV
@@ -49,13 +77,13 @@ const HeroSection = () => {
             <h3 className="text-[#6db33f] text-2xl font-bold mb-6 flex items-center gap-3">
               <Icon icon="logos:java" className="text-3xl" /> ¿Por qué Java?
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">"Decidí empezar con Java precisamente porque no es un camino sencilla. Me motivó su complejidad y el hecho de ser el motor de las grandes empresas. Elegí ir a por lo difícil desde el primer día para forjar una base técnica sólida que me permitiera dominar cualquier tecnología en el futuro."</p>
+            <p className="text-gray-300 text-lg leading-relaxed">"Decidí empezar con Java porque me motivó su complejidad y el hecho de ser el motor de las grandes empresas. Elegí ir por lo difícil desde el primer día para forjar una base técnica sólida que me permitiera dominar cualquier lenguaje en el futuro."</p>
           </div>
           <div className="bg-[#1a1a1a] p-12 rounded-[2.5rem] border border-[#343a40] hover:border-[#6db33f]/30 transition-all animate-fade-in-up delay-300">
             <h3 className="text-[#6db33f] text-2xl font-bold mb-6 flex items-center gap-3">
               <Icon icon="fluent:window-dev-tools-20-filled" className="text-3xl text-blue-400" /> Ingeniería en Sistemas
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">"Estudio ingeniería para entender la tecnología desde su base, combinando mi afinidad natural con el rigor académico. Mi meta es ser desarrollador, pero con la visión integral sobre hardware y software que solo la ingeniería proporciona."</p>
+            <p className="text-gray-300 text-lg leading-relaxed">"Estudio ingeniería en sistemas computacionales para entender la tecnología desde su base. Mi meta es ser desarrollador, pero con la visión integral sobre hardware y software que la educación académica proporciona."</p>
           </div>
         </section>
       </div>
