@@ -59,11 +59,11 @@ const HeroSection = () => {
               ¡Hola! Soy un desarrollador me gusta crear soluciones eficientes y escalables. Mi enfoque principal es el ecosistema de Java con Spring Boot para el backend, complementado con la creación de interfaces modernas y responsivas utilizando React y Tailwind CSS.
             </p>
             <div className="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
-              <a href="https://github.com/devalan000-sudo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#24292e] text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-[#2f363d] transition">
-                <Icon icon="ri:github-fill" className="text-lg md:text-xl text-white" /> <span className="text-sm md:text-base">GitHub</span>
+              <a href="https://github.com/devalan000-sudo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#24292e] text-[#fff] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-[#2f363d] transition">
+                <Icon icon="ri:github-fill" className="text-lg md:text-xl text-[#fff]" /> <span className="text-sm md:text-base text-[#fff]">GitHub</span>
               </a>
-              <a href="https://www.linkedin.com/in/alan-quiroz-rivera" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#0077b5] text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-[#0096db] transition">
-                <Icon icon="ri:linkedin-fill" className="text-lg md:text-xl text-white" /> <span className="text-sm md:text-base">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/alan-quiroz-rivera" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#0077b5] text-[#fff] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-[#0096db] transition">
+                <Icon icon="ri:linkedin-fill" className="text-lg md:text-xl text-[#fff]" /> <span className="text-sm md:text-base text-[#fff]">LinkedIn</span>
               </a>
               <a href="/Quiroz_Alan_CV_Hardvard.pdf" download className="flex items-center gap-2 bg-[#6db33f] text-black px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:bg-white transition">
                 <Icon icon="ri:download-cloud-fill" className="text-lg md:text-xl" /> <span className="text-sm md:text-base">CV</span>
