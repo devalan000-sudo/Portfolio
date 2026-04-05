@@ -3,38 +3,38 @@ import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ id, title, description, tech, icon, github, demo, image }) => (
-  <div className="flex flex-col md:flex-row bg-[#1a1a1a] rounded-3xl overflow-hidden border border-[#343a40] hover:border-[#6db33f]/50 transition-all duration-500 group">
-    <div className="md:w-64 bg-[#0e1012] flex items-center justify-center flex-shrink-0">
-      <div className="text-[#6db33f] opacity-30 group-hover:opacity-60 transition-opacity duration-500 h-full w-full flex items-center justify-center py-8 p-2">
+  <div className="flex flex-col md:flex-row bg-[#1a1a1a] rounded-2xl md:rounded-3xl overflow-hidden border border-[#343a40] hover:border-[#6db33f]/50 transition-all duration-500 group">
+    <div className="md:w-64 bg-[#0e1012] flex items-center justify-center flex-shrink-0 min-h-[120px] md:min-h-[180px]">
+      <div className="h-full w-full flex items-center justify-center p-1.5 md:p-2">
         {image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover rounded-xl border-2 border-[#6db33f]" />
+          <img src={image} alt={title} className="w-full h-full object-cover rounded-lg md:rounded-xl border-2 border-[#6db33f]" />
         ) : (
-          <Icon icon={icon} className="text-8xl" />
+          <Icon icon={icon} className="text-6xl md:text-8xl" />
         )}
       </div>
     </div>
-    <div className="p-8 flex flex-col justify-between flex-grow">
+    <div className="p-4 md:p-6 flex flex-col justify-between flex-grow">
       <div>
-        <h3 className="text-2xl font-bold mb-2 text-white">{title}</h3>
-        <p className="text-gray-400 text-lg mb-5">{description}</p>
-        <div className="flex gap-5 mb-4">
-          {tech.map((t, i) => <Icon key={i} icon={t} className="text-4xl hover:scale-125 transition-transform" />)}
+        <h3 className="text-lg md:text-2xl font-bold mb-1 md:mb-2 text-white">{title}</h3>
+        <p className="text-gray-400 text-sm md:text-base mb-3 md:mb-4">{description}</p>
+        <div className="flex flex-wrap gap-2 md:gap-3 mb-3">
+          {tech.map((t, i) => <Icon key={i} icon={t} className="text-2xl md:text-4xl hover:scale-110 transition-transform" />)}
         </div>
       </div>
-      <div className="flex gap-3">
-        <Link to={`/proyecto/${id}`} className="flex items-center gap-2 bg-[#6db33f] text-black px-6 py-2.5 rounded-full text-base font-semibold hover:bg-white transition">
-          Explicación del proyecto
+      <div className="flex flex-wrap gap-2 mt-2">
+        <Link to={`/proyecto/${id}`} className="flex items-center gap-1 md:gap-2 bg-[#6db33f] text-black px-3 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-white transition whitespace-nowrap">
+          <Icon icon="ri:eye-line" className="text-sm md:text-base" /> Ver más
         </Link>
         {github && (
-          <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-black text-white px-6 py-2.5 rounded-full text-base font-semibold hover:bg-white hover:text-black transition border border-[#343a40]">
-            <Icon icon="ri:github-fill" className="text-xl" />
-            Código
+          <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 bg-black text-white px-3 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-white hover:text-black transition border border-[#343a40]">
+            <Icon icon="ri:github-fill" className="text-sm md:text-base" />
+            <span className="hidden sm:inline">Código</span>
           </a>
         )}
         {demo && (
-          <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#FF0000] text-white px-6 py-2.5 rounded-full text-base font-semibold hover:bg-[#CC0000] transition">
-            <Icon icon="ri:external-link-fill" className="text-xl" />
-            Ver demo
+          <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 bg-[#FF0000] text-white px-3 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-[#CC0000] transition">
+            <Icon icon="ri:external-link-fill" className="text-sm md:text-base" />
+            <span className="hidden sm:inline">Ver demo</span>
           </a>
         )}
       </div>
@@ -98,8 +98,8 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-6">
+    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+      <div className="grid md:grid-cols-2 gap-4 md:gap-6">
         <div>
           <input 
             type="text" 
@@ -109,9 +109,9 @@ const ContactForm = () => {
               setFormData({...formData, name: e.target.value});
               if (errors.name) setErrors({...errors, name: null});
             }}
-            className={`bg-[#0e1012] border p-5 rounded-2xl outline-none focus:border-[#6db33f] text-white w-full ${errors.name ? 'border-red-500' : 'border-[#343a40]'}`}
+            className={`bg-[#0e1012] border p-3 md:p-5 rounded-xl md:rounded-2xl outline-none focus:border-[#6db33f] text-white w-full text-sm md:text-base ${errors.name ? 'border-red-500' : 'border-[#343a40]'}`}
           />
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          {errors.name && <p className="text-red-500 text-xs md:text-sm mt-1">{errors.name}</p>}
         </div>
         <div>
           <input 
@@ -122,23 +122,23 @@ const ContactForm = () => {
               setFormData({...formData, email: e.target.value});
               if (errors.email) setErrors({...errors, email: null});
             }}
-            className={`bg-[#0e1012] border p-5 rounded-2xl outline-none focus:border-[#6db33f] text-white w-full ${errors.email ? 'border-red-500' : 'border-[#343a40]'}`}
+            className={`bg-[#0e1012] border p-3 md:p-5 rounded-xl md:rounded-2xl outline-none focus:border-[#6db33f] text-white w-full text-sm md:text-base ${errors.email ? 'border-red-500' : 'border-[#343a40]'}`}
           />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-red-500 text-xs md:text-sm mt-1">{errors.email}</p>}
         </div>
       </div>
       <div>
         <textarea 
           placeholder="Mensaje" 
-          rows="5" 
+          rows="4" 
           value={formData.message}
           onChange={(e) => {
             setFormData({...formData, message: e.target.value});
             if (errors.message) setErrors({...errors, message: null});
           }}
-          className={`w-full bg-[#0e1012] border p-5 rounded-2xl outline-none focus:border-[#6db33f] text-white ${errors.message ? 'border-red-500' : 'border-[#343a40]'}`}
+          className={`w-full bg-[#0e1012] border p-3 md:p-5 rounded-xl md:rounded-2xl outline-none focus:border-[#6db33f] text-white text-sm md:text-base ${errors.message ? 'border-red-500' : 'border-[#343a40]'}`}
         ></textarea>
-        {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+        {errors.message && <p className="text-red-500 text-xs md:text-sm mt-1">{errors.message}</p>}
       </div>
       
       {status === 'success' && (
@@ -148,7 +148,7 @@ const ContactForm = () => {
         <p className="text-red-500 text-center">Error al enviar el mensaje. Intenta de nuevo.</p>
       )}
       
-      <button type="submit" className="w-full bg-[#6db33f] text-black font-bold py-5 rounded-2xl hover:brightness-110 transition">
+      <button type="submit" className="w-full bg-[#6db33f] text-black font-bold py-3 md:py-5 rounded-xl md:rounded-2xl hover:brightness-110 transition text-sm md:text-base">
         ENVIAR
       </button>
     </form>
@@ -172,7 +172,7 @@ const MainContent = () => {
 
         <section className="py-24 border-t border-[#343a40]">
           <h2 className="text-center text-gray-500 uppercase tracking-[0.4em] text-xs mb-16 font-bold animate-fade-in">Stack Tecnológico</h2>
-          <div className="flex flex-wrap justify-center gap-16 text-8xl grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-5xl md:text-8xl md:grayscale md:opacity-50 md:hover:opacity-70 md:hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
             <div className="flex flex-col items-center">
               <Icon icon="logos:java" />
               <span className="text-sm text-gray-500 mt-2">Java</span>
@@ -194,7 +194,7 @@ const MainContent = () => {
               <span className="text-sm text-gray-500 mt-2">MySQL</span>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-16 text-8xl grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all animate-fade-in-up delay-300">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-5xl md:text-8xl md:grayscale md:opacity-50 md:hover:opacity-70 md:hover:grayscale-0 transition-all animate-fade-in-up delay-300">
             <div className="flex flex-col items-center">
               <Icon icon="logos:javascript" />
               <span className="text-sm text-gray-500 mt-2">JavaScript</span>
@@ -212,7 +212,7 @@ const MainContent = () => {
 
         <section className="py-24 border-t border-[#343a40]">
           <h2 className="text-center text-gray-500 uppercase tracking-[0.4em] text-xs mb-16 font-bold animate-fade-in">Herramientas Adicionales</h2>
-          <div className="flex flex-wrap justify-center gap-16 text-8xl grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-5xl md:text-8xl md:grayscale md:opacity-50 md:hover:opacity-70 md:hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
             <div className="flex flex-col items-center">
               <Icon icon="logos:git-icon" />
               <span className="text-sm text-gray-500 mt-2">Git</span>
@@ -230,33 +230,37 @@ const MainContent = () => {
               <span className="text-sm text-gray-500 mt-2">Postman</span>
             </div>
             <div className="flex flex-col items-center">
-              <Icon icon="logos:axios" />
-              <span className="text-sm text-gray-500 mt-2">Axios</span>
-            </div>
-            <div className="flex flex-col items-center">
               <Icon icon="devicon:swagger" />
               <span className="text-sm text-gray-500 mt-2">Swagger</span>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-16 text-8xl opacity-50 hover:opacity-100 transition-all animate-fade-in-up delay-300">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-5xl md:text-8xl md:grayscale md:opacity-50 md:hover:opacity-70 md:hover:grayscale-0 transition-all animate-fade-in-up delay-300">
             <div className="flex flex-col items-center">
-              <Icon icon="logos:redis" className="grayscale hover:grayscale-0" />
+              <Icon icon="logos:axios" />
+              <span className="text-sm text-gray-500 mt-2">Axios</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="logos:redis" />
               <span className="text-sm text-gray-500 mt-2">Redis</span>
             </div>
             <div className="flex flex-col items-center">
-              <Icon icon="ri:database-2-line" className="text-7xl grayscale hover:grayscale-0" />
+              <Icon icon="ri:database-2-line" className="text-4xl md:text-6xl" />
               <span className="text-sm text-gray-500 mt-2">SQL Server</span>
             </div>
             <div className="flex flex-col items-center">
-              <Icon icon="logos:vercel" className="text-6xl grayscale hover:grayscale-0" />
+              <Icon icon="logos:vercel" />
               <span className="text-sm text-gray-500 mt-2">Vercel</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Icon icon="devicon:railway" className="text-[#7C3AED] md:grayscale md:opacity-50 md:hover:opacity-100 md:hover:grayscale-0 transition-all" />
+              <span className="text-sm text-gray-500 mt-2">Railway</span>
             </div>
           </div>
         </section>
 
         <section className="py-24 border-t border-[#343a40]">
           <h2 className="text-center text-gray-500 uppercase tracking-[0.4em] text-xs mb-16 font-bold animate-fade-in">Editores de Código</h2>
-          <div className="flex flex-wrap justify-center gap-16 text-8xl grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-5xl md:text-8xl md:grayscale md:opacity-50 md:hover:opacity-70 md:hover:grayscale-0 transition-all mb-8 animate-fade-in-up delay-200">
             <div className="flex flex-col items-center">
               <Icon icon="logos:intellij-idea" />
               <span className="text-sm text-gray-500 mt-2">IntelliJ IDEA</span>
@@ -276,12 +280,12 @@ const MainContent = () => {
           </div>
         </section>
 
-        <section id="contacto" className="max-w-4xl mx-auto mt-20 animate-fade-in-up delay-400">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-2">Contacto</h2>
+        <section id="contacto" className="max-w-4xl mx-auto mt-16 md:mt-20 animate-fade-in-up delay-400 px-4">
+          <div className="text-center mb-6 md:mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Contacto</h2>
             <p className="text-gray-400">Mándame un correo para ponernos en contacto</p>
           </div>
-          <div className="bg-[#1a1a1a] p-12 rounded-[3.5rem] border border-[#343a40]">
+          <div className="bg-[#1a1a1a] p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] border border-[#343a40]">
             <ContactForm />
           </div>
         </section>
