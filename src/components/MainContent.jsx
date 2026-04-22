@@ -12,7 +12,7 @@ const ProjectCard = ({ id, title, description, tech, icon, github, demo, image }
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover rounded-lg md:rounded-xl border-2 border-[#6db33f]" />
         ) : (
-          <Icon icon={icon} className="text-6xl md:text-8xl" />
+          <Icon icon={icon} className={`text-6xl md:text-8xl ${id === 'amigapp' ? 'animate-[spin_6.25s_linear_infinite]' : ''}`} />
         )}
       </div>
     </div>
@@ -34,7 +34,7 @@ const ProjectCard = ({ id, title, description, tech, icon, github, demo, image }
             <span className="hidden sm:inline">Código</span>
           </a>
         )}
-        {demo && (
+        {demo && demo !== "#" && (
           <a href={demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 bg-[#6db33f] text-black px-3 md:px-5 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold hover:bg-white transition">
             <Icon icon="ri:external-link-fill" className="text-sm md:text-base" />
             <span className="hidden sm:inline">Ver demo</span>
@@ -110,6 +110,17 @@ const MainContent = () => {
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Contacto</h2>
             <p className="text-gray-400">Mándame un correo para ponernos en contacto</p>
+            <div className="mt-6 pt-4 border-t border-[#343a40]">
+              <p className="text-gray-400 mb-3">Si quieres, mándame un WhatsApp para conversar rápidamente</p>
+              <a 
+                href="https://wa.me/524772803134" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xl md:text-2xl font-semibold text-[#6db33f] hover:text-white transition"
+              >
+                477 280 31 34
+              </a>
+            </div>
           </div>
           <div className="bg-[#1a1a1a] p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] border border-[#343a40]">
             <ContactForm />

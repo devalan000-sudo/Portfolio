@@ -25,7 +25,7 @@ const ProjectDetail = () => {
           <div className="bg-[#1a1a1a] rounded-[2rem] border border-[#343a40] p-1.5 md:p-2 mb-10 md:mb-12">
             <div className="aspect-video bg-[#0e1012] rounded-[1.5rem] overflow-hidden">
               <iframe
-                src={`${project.video}?rel=0&modestbranding=1&controls=1&iv_load_policy=3&cc_load_policy=0&disablekb=1`}
+                src={`https://www.youtube-nocookie.com/embed/${project.video.includes('youtu.be') ? project.video.split('/').pop() : project.video.split('v=')[1]?.split('&')[0]}`}
                 title={project.title}
                 className="w-full h-full"
                 frameBorder="0"
@@ -72,7 +72,7 @@ const ProjectDetail = () => {
                     <div className="bg-[#1a1a1a] rounded-[2rem] border border-[#343a40] p-2 md:p-3">
                       <div className="aspect-video bg-[#0e1012] rounded-[1.5rem] flex items-center justify-center overflow-hidden">
                         {screenshot.image ? (
-                          <img src={screenshot.image} alt={screenshot.title} className="w-full h-full object-cover" />
+                          <img src={screenshot.image} alt={screenshot.title} className="w-full h-full object-contain" />
                         ) : (
                           <Icon icon="ri:image-line" className="text-4xl md:text-5xl text-gray-600" />
                         )}
@@ -102,12 +102,16 @@ const ProjectDetail = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2 md:gap-3 w-full md:w-auto">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#1DB954] text-black px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-[#1ed760] transition text-sm md:text-base">
-                <Icon icon="ri:external-link-fill" /> Ver Demo
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-black text-[#fff] px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-[#24292e] transition text-sm md:text-base">
-                <Icon icon="ri:github-fill" className="text-lg md:text-xl" /> GitHub
-              </a>
+              {project.demo && project.demo !== "#" && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-[#6db33f] text-black px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-white transition text-sm md:text-base">
+                  <Icon icon="ri:external-link-fill" /> Ver Demo
+                </a>
+              )}
+              {project.github && project.github !== "#" && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-black text-[#fff] px-4 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-[#24292e] transition text-sm md:text-base">
+                  <Icon icon="ri:github-fill" className="text-lg md:text-xl" /> GitHub
+                </a>
+              )}
             </div>
           </div>
         </div>
