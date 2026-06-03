@@ -9,7 +9,7 @@ export const projectDetailsMap = {
   "ecommerce": {
     title: "Sport Store E-commerce Full Stack",
     description: "Plataforma completa de comercio electrónico que permite a los usuarios gestionar productos, carritos de compras y realizar pedidos de manera segura.",
-    video: "https://www.youtube.com/embed/0ncfUHsydIY",
+    video: "https://youtu.be/0ncfUHsydIY",
     demo: "https://ecommerce-frontend-hazel-alpha.vercel.app",
     github: "https://github.com/devalan000-sudo/Ecommerce-API-Rest",
     fullStory: "Desarrollé una aplicación web de comercio electrónico completamente funcional con un backend robusto utilizando Spring Boot y seguridad JWT para la autenticación. El frontend está construido con React y Tailwind CSS para una experiencia de usuario moderna y responsiva. Implementé funcionalidades como gestión de inventario, procesamiento de pagos, historial de pedidos y panel de administración.",
